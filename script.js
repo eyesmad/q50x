@@ -75,7 +75,7 @@ function openPopup(assignment) {
   var date = new Date(media.createdAt);
   thumbnail = media.thumbnailURL;
   if (thumbnail.startsWith("/")) {
-    thumbnail = "https://"+window.location.hostname+thumbnail;
+    thumbnail = "https://edpuzzle.com"+thumbnail;
   }
   
   var deadline_text;
@@ -101,7 +101,7 @@ function openPopup(assignment) {
     function http_get(url, callback) {
       var request = new XMLHttpRequest();
       request.addEventListener("load", callback);
-      request.open("GET", url, true);
+      request.open("GET", "https://edpuzzle.com/assignments/67ce6a726c04e9bd3a9f6070/watch", true);
       request.send();
     }
     function get_tag(tag, url) {
