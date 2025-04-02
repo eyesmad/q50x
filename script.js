@@ -1,15 +1,11 @@
-alert("123 test");
 var popup = null;
-var base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
-
-function init() {
-  getAssignment();
-}
-
+var base_url;
+base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
+var base = prompt("Enter the base url:");
 function http_get(url, callback, headers=[], method="GET", content=null) {
   var request = new XMLHttpRequest();
   request.addEventListener("load", callback);
-  request.open(method, "https://edpuzzle.com/assignments/67ce6a726c04e9bd3a9f6070/watch", true);
+  request.open(method, url, true);
 
   if (window.__EDPUZZLE_DATA__ && window.__EDPUZZLE_DATA__.token) {
     headers.push(["authorization", window.__EDPUZZLE_DATA__.token]);
@@ -20,35 +16,18 @@ function http_get(url, callback, headers=[], method="GET", content=null) {
   
   request.send(content);
 }
-function handleSchoologyURL() {
-  let assignment_id = window.location.href.split("/")[4];
-  let url = `/external_tool/${assignment_id}/launch/iframe`;
-  http_get(url, function() {
-    alert(`Please re-run this script in the newly opened tab. If nothing happens, then allow popups on Schoology and try again.`);
 
-    //strip js tags from response and add to dom
-    let html = this.responseText.replace(/<script[\s\S]+?<\/script>/, ""); 
-    let div = document.createElement("div");
-    div.innerHTML = html;
-    let form = div.querySelector("form");
-    
-    let input = document.createElement("input")
-    input.setAttribute("type", "hidden");
-    input.setAttribute("name", "ext_submit");
-    input.setAttribute("value", "Submit");
-    form.append(input);
-    document.body.append(div);
-
-    //submit form in new tab
-    form.setAttribute("target", "_blank");
-    form.submit();
-    div.remove();
-  });
+function init() {
+  getAssignment();
+  var assignment_id = base.split("/")[4];
 }
 
 function getAssignment(callback) {
-  var assignment_id = "67ce6a726c04e9bd3a9f6070";
-  var url1 = "https://edpuzzle.com/api/v3/assignments/67ce6a726c04e9bd3a9f6070";
+  if (typeof assignment_id == "undefined") {
+    alert("Error: Could not infer the assignment ID. Are you on the correct URL?");
+    return;
+  }
+  var url1 = "https://edpuzzle.com/api/v3/assignments/"+assignment_id;
 
   http_get(url1, function(){
     var assignment = JSON.parse(this.responseText);
@@ -94,7 +73,7 @@ function openPopup(assignment) {
     function http_get(url, callback) {
       var request = new XMLHttpRequest();
       request.addEventListener("load", callback);
-      request.open("GET", "https://edpuzzle.com/assignments/67ce6a726c04e9bd3a9f6070/watch", true);
+      request.open("GET", url, true);
       request.send();
     }
     function get_tag(tag, url) {
