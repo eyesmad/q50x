@@ -1,7 +1,7 @@
 var popup = null;
 var base_url;
 base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
-var base = prompt("Enter the base url:");
+var mainurl = prompt("Enter the base url:");
 function http_get(url, callback, headers=[], method="GET", content=null) {
   var request = new XMLHttpRequest();
   request.addEventListener("load", callback);
@@ -19,7 +19,7 @@ function http_get(url, callback, headers=[], method="GET", content=null) {
 
 function init() {
   getAssignment();
-  var assignment_id = base.split("/")[4];
+  var assignment_id = mainurl.split("/")[4];
 }
 
 function getAssignment(callback) {
