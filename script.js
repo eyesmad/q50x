@@ -1,3 +1,4 @@
+alert("123 test")
 var popup = null;
 var base_url;
 if (typeof document.dev_env != "undefined") {
