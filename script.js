@@ -22,7 +22,7 @@ function init() {
 }
 
 function getAssignment(callback) {
-  var assignment_id = mainurl.split("/")[4];
+  var assignment_id = mainurl;
   if (typeof assignment_id == "undefined") {
     alert("Error: Could not infer the assignment ID. Are you on the correct URL?");
     return;
