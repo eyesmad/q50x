@@ -23,11 +23,11 @@ function init() {
 
 function getAssignment(callback) {
   var assignment_id = mainurl;
-  if (typeof assignment_id == "undefined") {
+  if (typeof mainurl == "undefined") {
     alert("Error: Could not infer the assignment ID. Are you on the correct URL?");
     return;
   }
-  var url1 = "https://edpuzzle.com/api/v3/assignments/"+assignment_id;
+  var url1 = "https://edpuzzle.com/api/v3/assignments/"+mainurl;
 
   http_get(url1, function(){
     var assignment = JSON.parse(this.responseText);
