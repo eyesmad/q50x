@@ -1,12 +1,9 @@
 alert("123 test");
 var popup = null;
-var base_url;
-if (typeof document.dev_env != "undefined") {
-  base_url = document.dev_env;
-}
-else {
-  //get resources off of github to not inflate the jsdelivr stats
-  base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
+var base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
+
+function init() {
+  getAssignment();
 }
 
 function http_get(url, callback, headers=[], method="GET", content=null) {
@@ -23,11 +20,6 @@ function http_get(url, callback, headers=[], method="GET", content=null) {
   
   request.send(content);
 }
-
-function init() {
-  getAssignment();
-}
-
 function handleSchoologyURL() {
   let assignment_id = window.location.href.split("/")[4];
   let url = `/external_tool/${assignment_id}/launch/iframe`;
@@ -55,7 +47,7 @@ function handleSchoologyURL() {
 }
 
 function getAssignment(callback) {
-  var assignment_id = window.location.href.split("/")[4];
+  var assignment_id = "67ce6a726c04e9bd3a9f6070";
   var url1 = "https://edpuzzle.com/api/v3/assignments/67ce6a726c04e9bd3a9f6070";
 
   http_get(url1, function(){
