@@ -1,7 +1,8 @@
 var popup = null;
 var base_url;
 base_url = "https://raw.githubusercontent.com/ading2210/edpuzzle-answers/main";
-var mainurl = prompt("Enter the assignment id:");
+var mainurl = prompt("Enter the assignment id");
+alert(mainurl);
 function http_get(url, callback, headers=[], method="GET", content=null) {
   var request = new XMLHttpRequest();
   request.addEventListener("load", callback);
