@@ -19,10 +19,10 @@ function http_get(url, callback, headers=[], method="GET", content=null) {
 
 function init() {
   getAssignment();
-  var assignment_id = mainurl.split("/")[4];
 }
 
 function getAssignment(callback) {
+  var assignment_id = mainurl.split("/")[4];
   if (typeof assignment_id == "undefined") {
     alert("Error: Could not infer the assignment ID. Are you on the correct URL?");
     return;
